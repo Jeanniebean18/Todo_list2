@@ -1,5 +1,29 @@
 Rails.application.routes.draw do
+  
+   get "/login" => "users#login", :as => "login"
+   get "/logout" => "users#logout", :as => "logout"
+   post "/users/valid" => "users#valid", :as => "valid"
   resources :users
+  
+  # Prefix Verb   URI Pattern               Controller#Action
+#       users GET    /users(.:format)          users#index
+#             POST   /users(.:format)          users#create
+#    new_user GET    /users/new(.:format)      users#new
+#   edit_user GET    /users/:id/edit(.:format) users#edit
+#        user GET    /users/:id(.:format)      users#show
+#             PATCH  /users/:id(.:format)      users#update
+#             PUT    /users/:id(.:format)      users#update
+#             DELETE /users/:id(.:format)      users#destroy
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

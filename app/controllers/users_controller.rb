@@ -6,10 +6,42 @@ class UsersController < ApplicationController
   def index
     @users = User.all
   end
-
+  
+  def login
+    @user = User.new
+  end
+  
+  def logout
+    session[:user_id] = nil
+    redirect_to login_path
+  end
   # GET /users/1
   # GET /users/1.json
   def show
+    if session[:user_id] # && session[:user_id] == params[:id].to_i
+      @user = User.find(session[:user_id])
+      render :show
+    else
+      redirect_to login_path
+    end
+  end
+  
+  def valid
+    @user = User.where(email:params[:user][:email]).first
+    if @user.nil?
+      @error = true
+      redirect_to login_path
+    else
+      user_password = BCrypt::Password.new(@user.password)
+  
+      if user_password == params[:user][:password]
+        session[:user_id] = @user.id
+        redirect_to user_path(@user.id)
+      else
+        @error = true
+        redirect_to login_path
+      end
+    end
   end
 
   # GET /users/new
@@ -19,6 +51,12 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    if session[:user_id] && session[:user_id] == params[:id].to_i
+      @user = User.find(params[:id])
+      render :edit
+    else
+      redirect_to user_path("#{session[:user_id]}")
+    end
   end
 
   # POST /users
@@ -41,28 +79,34 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+    the_password = BCrypt::Password.create(params[:user][:password])
+    @user = User.find(params[:id])
+    @user.update_attributes(user_params)
+    @user.password = the_password
+    # if @user.save
+ #      redirect_to user_path(@user.id)
+      respond_to do |format|
+        if @user.save
+          format.html { redirect_to @user, notice: 'User was successfully updated.' }
+          format.json { render :show, status: :ok, location: @user }
+        else
+          format.html { render :edit }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
       end
     end
-  end
 
-  # DELETE /users/1
-  # DELETE /users/1.json
-  def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
+    # DELETE /users/1
+    # DELETE /users/1.json
+    def destroy
+      @user.destroy
+      respond_to do |format|
+        format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
-  end
 
-  private
+    private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
@@ -72,4 +116,4 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :email, :password)
     end
-end
+  end
