@@ -9,6 +9,7 @@
   <strong>Email:</strong>
   <%= @user.email %>
 </p>
+<p><a href = "<%= logout_path %>">log out</a></p>
 <!-- chores to do -->
 <%@chores = @user.chores %>
 <p><strong>Chores To-Do:</strong></p>
