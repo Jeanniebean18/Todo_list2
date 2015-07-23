@@ -9,9 +9,7 @@
   <strong>Email:</strong>
   <%= @user.email %>
 </p>
-
-
-
+<!-- chores to do -->
 <%@chores = @user.chores %>
 <p><strong>Chores To-Do:</strong></p>
 <%@chores.each do |chore| %>
@@ -22,7 +20,7 @@
 </p>
 <%end%>
 <%end%>
-
+<!-- chores done -->
 <p><strong>Chores that are done:</strong></p>
 <%@chores.each do |chore| %>
 <% if chore.done =="true" %>
@@ -32,9 +30,8 @@
 </p>
 <%end%>
 <%end%>
-
+<!-- add chore form -->
 <strong>Add new chore</strong>
-
 <%= form_tag chores_path, :method => "post" do %>
 <p>
   Chore Name: <input type="text" placeholder="chore" name="chore[name]" 

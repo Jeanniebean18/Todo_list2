@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
+  def home
+    redirect_to users_path
+  end
   # GET /users
   # GET /users.json
   def index
@@ -36,7 +38,7 @@ class UsersController < ApplicationController
   
       if user_password == params[:user][:password]
         session[:user_id] = @user.id
-        redirect_to user_path(@user.id)
+        redirect_to user_path
       else
         @error = true
         redirect_to login_path
@@ -55,7 +57,7 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
       render :edit
     else
-      redirect_to user_path("#{session[:user_id]}")
+      redirect_to user_path
     end
   end
 
@@ -83,8 +85,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.update_attributes(user_params)
     @user.password = the_password
-    # if @user.save
-    #      redirect_to user_path(@user.id)
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
@@ -109,7 +109,7 @@ class UsersController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_user
-    @user = User.find(params[:id])
+    @user = User.find(session[:user_id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

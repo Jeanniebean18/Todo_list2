@@ -1,20 +1,23 @@
 Rails.application.routes.draw do
   
-  resources :chores
-   get "/login" => "users#login", :as => "login"
-   get "/logout" => "users#logout", :as => "logout"
-   post "/users/valid" => "users#valid", :as => "valid"
+  
+  get "/" => "users#home"
+  get "/login" => "users#login", :as => "login"
+  get "/logout" => "users#logout", :as => "logout"
+  post "/users/valid" => "users#valid", :as => "valid"
+  get "/profile" => "users#show", :as => "user"
   resources :users
+  resources :chores
   
   # Prefix Verb   URI Pattern               Controller#Action
-#       users GET    /users(.:format)          users#index
-#             POST   /users(.:format)          users#create
-#    new_user GET    /users/new(.:format)      users#new
-#   edit_user GET    /users/:id/edit(.:format) users#edit
-#        user GET    /users/:id(.:format)      users#show
-#             PATCH  /users/:id(.:format)      users#update
-#             PUT    /users/:id(.:format)      users#update
-#             DELETE /users/:id(.:format)      users#destroy
+  #       users GET    /users(.:format)          users#index
+  #             POST   /users(.:format)          users#create
+  #    new_user GET    /users/new(.:format)      users#new
+  #   edit_user GET    /users/:id/edit(.:format) users#edit
+  #        user GET    /users/:id(.:format)      users#show
+  #             PATCH  /users/:id(.:format)      users#update
+  #             PUT    /users/:id(.:format)      users#update
+  #             DELETE /users/:id(.:format)      users#destroy
   
   
   
