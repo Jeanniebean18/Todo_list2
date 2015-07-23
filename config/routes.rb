@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get "/login" => "users#login", :as => "login"
   get "/logout" => "users#logout", :as => "logout"
   post "/users/valid" => "users#valid", :as => "valid"
-  get "/profile" => "users#show", :as => "user"
+  
   resources :users
   resources :chores
   
