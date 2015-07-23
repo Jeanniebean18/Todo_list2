@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @chore.name %>
+</p>
+
+<p>
+  <strong>Done:</strong>
+  <%= @chore.done %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @chore.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_chore_path(@chore) %> |
+<%= link_to 'Back', chores_path %>

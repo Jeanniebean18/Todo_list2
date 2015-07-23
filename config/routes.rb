@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :chores
    get "/login" => "users#login", :as => "login"
    get "/logout" => "users#logout", :as => "logout"
    post "/users/valid" => "users#valid", :as => "valid"

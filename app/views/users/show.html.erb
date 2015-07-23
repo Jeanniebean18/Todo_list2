@@ -10,10 +10,44 @@
   <%= @user.email %>
 </p>
 
-<!-- <p>
-  <strong>Password:</strong>
-  <%= @user.password %>
-</p> -->
+
+
+<%@chores = @user.chores %>
+<p><strong>Chores To-Do:</strong></p>
+<%@chores.each do |chore| %>
+<% if chore.done =="false" %>
+<p>
+  <%= chore.name %><a href="<%= chore_path(chore.id) %>" data-method="put"> Mark as Done</a>--
+  <a href="<%=   chore_path(chore.id) %>" data-method="delete">delete</a>
+</p>
+<%end%>
+<%end%>
+
+<p><strong>Chores that are done:</strong></p>
+<%@chores.each do |chore| %>
+<% if chore.done =="true" %>
+<p>
+  <%= chore.name %><a href="<%= chore_path(chore.id) %>" data-method="put"> Mark as Todo</a>--
+  <a href="<%= chore_path(chore.id) %>" data-method="delete">delete</a>
+</p>
+<%end%>
+<%end%>
+
+<strong>Add new chore</strong>
+
+<%= form_tag chores_path, :method => "post" do %>
+<p>
+  Chore Name: <input type="text" placeholder="chore" name="chore[name]" 
+  required>
+  <input type="hidden" name="chore[user_id]" 
+  value="<%= @user.id %>">
+  <input type="hidden" name="chore[done]" 
+  value="false">
+  <input type="submit" value="submit">
+</p>
+<%end%>
+
+
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
