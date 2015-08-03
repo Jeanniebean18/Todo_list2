@@ -14,11 +14,25 @@
  *= require_self
  */
 
+a {
+  text-decoration:none;
+}
+
+a.submit2 {
+  color: white;
+  
+}
 h1 {
   font-family: 'Dosis', sans-serif;
   font-size:30px;
-  
 }
+
+h2 {
+  font-family: 'Dosis', sans-serif;
+  font-size:25px;
+  color:#BEBEBE;
+}
+
 body {
   font-family: 'Dosis', sans-serif;
   margin:0;
@@ -28,6 +42,7 @@ body {
 
 .user_icon {
   width:40px;
+  margin-bottom:-1%;
 }
 
 .logo {
@@ -58,6 +73,18 @@ body {
   font-family: 'Dosis', sans-serif;
   font-weight:200;
   font-size:20px;
+  color: white;
+  border:none;
+  margin: 2% 0 2% 0;
+  
+}
+
+.submit2 {
+  background-color:#30BEC3;
+  padding:1%;
+  font-family: 'Dosis', sans-serif;
+  font-weight:200;
+  font-size:13px;
   color: white;
   border:none;
   margin: 2% 0 2% 0;
