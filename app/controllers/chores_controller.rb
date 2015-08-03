@@ -24,6 +24,7 @@ class ChoresController < ApplicationController
   # POST /chores
   # POST /chores.json
   def create
+    binding.pry
     @user = User.find(params[:chore][:user_id])
     @chore = @user.chores.create(chore_params)
     @chore.save

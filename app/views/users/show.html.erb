@@ -1,22 +1,30 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-<p><a href = "<%= logout_path %>">log out</a></p>
+<%= inline_svg "logo.svg", class: 'logo' %>
+
+<h1>
+  <strong>
+  Hey
+  <%= @user.name %>!
+  </strong>
+</h1>
+
+
 <!-- chores to do -->
-<%@chores = @user.chores %>
+<%@chores = Chore.all %>
 <p><strong>Chores To-Do:</strong></p>
 <%@chores.each do |chore| %>
 <% if chore.done =="false" %>
 <p>
-  <%= chore.name %><a href="<%= chore_path(chore.id) %>" data-method="put"> Mark as Done</a>--
+  <%= chore.name %> 
+ <%if chore.user.name == "Bryan" %>
+  <%= inline_svg "bryan.svg", class: 'user_icon' %>
+ <% end %>
+ <%if chore.user.name == "Jeannie" %>
+  <%= inline_svg "jeannie.svg", class: 'user_icon' %>
+ <% end %>
+   <!-- client --> <a href="<%= chore_path(chore.id) %>" data-method="put"> Mark as Done</a>--
   <a href="<%=   chore_path(chore.id) %>" data-method="delete">delete</a>
 </p>
 <%end%>
@@ -26,7 +34,14 @@
 <%@chores.each do |chore| %>
 <% if chore.done =="true" %>
 <p>
-  <%= chore.name %><a href="<%= chore_path(chore.id) %>" data-method="put"> Mark as Todo</a>--
+  <%= chore.name %> 
+  <%if chore.user.name == "Bryan" %>
+   <%= inline_svg "bryan.svg", class: 'user_icon' %>
+  <% end %>
+  <%if chore.user.name == "Jeannie" %>
+   <%= inline_svg "jeannie.svg", class: 'user_icon' %>
+  <% end %>
+  <a href="<%= chore_path(chore.id) %>" data-method="put"> Mark as Todo</a>--
   <a href="<%= chore_path(chore.id) %>" data-method="delete">delete</a>
 </p>
 <%end%>
@@ -35,13 +50,17 @@
 <strong>Add new chore</strong>
 <%= form_tag chores_path, :method => "post" do %>
 <p>
-  Chore Name: <input type="text" placeholder="chore" name="chore[name]" 
+  Chore Name: <input type="text" class = "input" name="chore[name]" 
   required>
-  <input type="hidden" name="chore[user_id]" 
-  value="<%= @user.id %>">
+ <%@users = User.all %>
+ <%@users.each do |user| %>
+  <input type="radio" name="chore[user_id]" value="<%= user.id %>" class="radial"><%= user.name %>
+  <%end%>
   <input type="hidden" name="chore[done]" 
   value="false">
-  <input type="submit" value="submit">
+  
+  <input type="submit" value="submit" class="submit">
+  
 </p>
 <%end%>
 

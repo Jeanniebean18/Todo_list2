@@ -13,3 +13,55 @@
  *= require_tree .
  *= require_self
  */
+
+h1 {
+  font-family: 'Dosis', sans-serif;
+  font-size:30px;
+  
+}
+body {
+  font-family: 'Dosis', sans-serif;
+  margin:0;
+  padding-left:5%;
+  padding-right:5%;
+}
+
+.user_icon {
+  width:40px;
+}
+
+.logo {
+  width:120px;
+}
+
+.input {
+  background-color:#BEBEBE;
+  height:25px;
+  width:200px;
+  font-family: 'Dosis', sans-serif;
+  font-weight:200;
+  color: white;
+  border:none;
+  font-size:20px;
+}
+
+.radial {
+  height:15px;
+  width:15px;
+}
+
+.submit {
+  background-color:#30BEC3;
+  padding:1%;
+  font-family: 'Dosis', sans-serif;
+  font-weight:200;
+  font-size:20px;
+  color: white;
+  border:none;
+  
+}
+
+p {
+  font-family: 'Dosis', sans-serif;
+  font-size:20px;
+}
