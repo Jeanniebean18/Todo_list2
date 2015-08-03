@@ -1,4 +1,8 @@
 <p id="notice"><%= notice %></p>
+
+
+<div class="dashboard">
+
 <h1>
   <strong>
     Hey
@@ -7,9 +11,7 @@
 </h1>
 
 <br>
-
-
-<!-- chores to do -->
+<div class="chores"><!-- chores to do -->
 <%@chores = Chore.all %>
 <h2>TODO</h2>
 <%@chores.each do |chore| %>
@@ -65,8 +67,9 @@
   
 </p>
 <%end%>
+</div>
 
 
-
+</div>
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
