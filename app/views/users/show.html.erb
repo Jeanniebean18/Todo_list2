@@ -1,7 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 
-<%= inline_svg "logo.svg", class: 'logo' %>
 
 <h1>
   <strong>
@@ -47,18 +46,18 @@
 <%end%>
 <%end%>
 <!-- add chore form -->
-<strong>Add new chore</strong>
+
 <%= form_tag chores_path, :method => "post" do %>
 <p>
-  Chore Name: <input type="text" class = "input" name="chore[name]" 
+  New Chore Name: <input type="text" class = "input" name="chore[name]" 
   required>
  <%@users = User.all %>
  <%@users.each do |user| %>
-  <input type="radio" name="chore[user_id]" value="<%= user.id %>" class="radial"><%= user.name %>
+  <br><input type="radio" name="chore[user_id]" value="<%= user.id %>" class="radial"><%= user.name %>
   <%end%>
   <input type="hidden" name="chore[done]" 
   value="false">
-  
+  <br>
   <input type="submit" value="submit" class="submit">
   
 </p>
