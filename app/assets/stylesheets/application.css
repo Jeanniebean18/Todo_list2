@@ -32,6 +32,25 @@ h2 {
   font-size:200%;
   color:#BEBEBE;
 }
+/*.task_manager {
+  position:relative;
+  display:block;
+  width:120px;*/
+/*  border:1px solid;*/
+  
+
+/*  float:left;*/
+/*  vertical-align: super;*/
+/*}*/
+
+h2.radio{
+  position:relative;
+  font-family: 'Dosis', sans-serif;
+  font-size:150%;
+  color:#BEBEBE;
+  line-height: 47px;
+  margin-bottom:-10%;
+}
 
 body {
   font-family: 'Dosis', sans-serif;
@@ -53,24 +72,38 @@ body {
   position:relative;
   width:100%;
   margin:2%;
+  margin-top:10%;
 }
 
 .input {
-  background-color:#BEBEBE;
-  height:20%;
+/*  border:1px solid #BEBEBE;*/
+  background-color:lightgray;
+  height:40px;
   width:100%;
   font-family: 'Dosis', sans-serif;
   font-weight:200;
   color: white;
   border:none;
+  
   font-size:120%;
   margin: 2% 0 2% 0;
 }
 
-.radial {
-  height:15px;
-  width:15px;
-  margin: 2% 0 2% 0;
+input[type="radio"]{
+  height:35px;
+  width:35px;
+  vertical-align:bottom;
+  
+   }
+
+.center {
+  position:relative;
+  display:block;
+  margin:2%;
+  width:90%;
+  margin-left:auto;
+  margin-right:auto;
+  padding-right:5%;
 }
 
 .submit {
@@ -81,7 +114,7 @@ body {
   font-size:120%;
   color: white;
   border:none;
-  margin: 2% 0 2% 0;
+  margin: 9% 0 2% 0;
   
 }
 
@@ -97,7 +130,27 @@ body {
   
 }
 
+.submit3 {
+  background-color:#BEBEBE;
+  padding:1%;
+  font-family: 'Dosis', sans-serif;
+  font-weight:200;
+  font-size:100%;
+  color: white;
+  border:none;
+  margin: 2% 0 2% 0;
+  
+}
+
 p {
   font-family: 'Dosis', sans-serif;
   font-size:100%;
+}
+
+#add_chore {
+  display:block;
+}
+
+footer {
+  margin-top:10%;
 }

@@ -1,7 +1,8 @@
-<%= @user.errors.full_messages %>
+<div class="center">
 <p>Please Login:</p>
 <%= form_tag valid_path, method: "post" do %>
   <input id="name" type="text" placeholder="Email" name="user[email]" class="input">
   <input id="password" type="password" placeholder="Password" name="user[password]" class="input">
   <input type="submit"class="submit">
 <%end%>
+</div>

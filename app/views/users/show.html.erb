@@ -2,16 +2,51 @@
 
 
 <div class="dashboard">
-
+<div class="center">
 <h1>
   <strong>
     Hey
     <%= @user.name %>!
   </strong>
 </h1>
+<a href = "<%= logout_path %>" class="submit3">log out</a> - <%= link_to 'Users', users_path, class:"submit3" %>
 
 <br>
-<div class="chores"><!-- chores to do -->
+<div class="chores">
+  
+  <!-- add chore form -->
+<div id="add_chore">
+  <%= form_tag chores_path, :method => "post" do %>
+  <p>
+   <b> New Chore Name: </b>
+    <br>
+    <input type="text" class = "input" name="chore[name]" 
+    required>
+   <p><b> Task Manager:</b>
+    <%@users = User.all %>
+    <%@users.each do |user| %>
+    <br><h2 class="radio"><input type="radio" name="chore[user_id]" value="<%= user.id %>"><%= user.name %></h2></div>
+    <%end%>
+    <br>
+    <br>
+    <p><b> Client:</b>
+   
+    <%@clients = Client.all %>
+    <%@clients.each do |client| %>
+    <br><h2 class="radio"><input type="radio" name="chore[client_id]" value="<%= client.id %>" class="radial"><%= client.name %></h2>
+    <%end%>
+    <input type="hidden" name="chore[done]" 
+    value="false">
+    <br>
+    <input type="submit" value="submit" class="submit">
+  
+  </p>
+  <%end%>
+</div>
+   <!-- add chore form -->
+  
+  
+  <!-- chores to do -->
 <%@chores = Chore.all %>
 <h2>TODO</h2>
 <%@chores.each do |chore| %>
@@ -24,8 +59,9 @@
   <%if chore.user.name == "Jeannie" %>
   <%= inline_svg "jeannie.svg", class: 'user_icon' %>
   <% end %>
-  <%= chore.name %> 
-  <!-- client --> <a href="<%= chore_path(chore.id) %>" data-method="put" class="submit2"> Mark as Done</a>&nbsp;
+  <%= chore.name %> <b><%= chore.client.name %> </b>
+  <!-- client --> 
+  <a href="<%= chore_path(chore.id) %>" data-method="put" class="submit2"> Mark as Done</a>&nbsp;
   <a href="<%=   chore_path(chore.id) %>" data-method="delete" class="submit2">delete</a>
 </p>
 <%end%>
@@ -48,28 +84,10 @@
 </p>
 <%end%>
 <%end%>
-<!-- add chore form -->
-
-<%= form_tag chores_path, :method => "post" do %>
-<p>
-  New Chore Name: 
-  <br>
-  <input type="text" class = "input" name="chore[name]" 
-  required>
-  <%@users = User.all %>
-  <%@users.each do |user| %>
-  <br><input type="radio" name="chore[user_id]" value="<%= user.id %>" class="radial"><%= user.name %>
-  <%end%>
-  <input type="hidden" name="chore[done]" 
-  value="false">
-  <br>
-  <input type="submit" value="submit" class="submit">
-  
-</p>
-<%end%>
-</div>
 
 
 </div>
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+</div>
+</div>
+
+

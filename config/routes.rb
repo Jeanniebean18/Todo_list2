@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
   
+  resources :clients
   get "/" => "users#home"
   get "/login" => "users#login", :as => "login"
   get "/logout" => "users#logout", :as => "logout"

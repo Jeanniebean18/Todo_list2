@@ -62,6 +62,6 @@ class ChoresController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def chore_params
-    params.require(:chore).permit(:name, :done, :user_id)
+    params.require(:chore).permit(:name, :done, :user_id, :client_id)
   end
 end
